@@ -7,6 +7,8 @@ import haxe.io.Input;
  */
 class Console
 {
+	public static function sleep(seconds:Float):Void {
+		Sys.sleep(seconds);
 	}
 	
 	public static function clear():Void {
