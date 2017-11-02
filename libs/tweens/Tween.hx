@@ -125,6 +125,13 @@ class Tween extends PoolableObject
 	}
 	
 	// -------------------------------------------------------------------------
+	public function repeat(numRepeats:Int, yoyo:Bool = false):Tween {
+		_repeat = numRepeats;
+		_yoyo = yoyo;
+		return this;
+	}
+	
+	// -------------------------------------------------------------------------
 	public function onStart(callback:Void->Void):Tween {
 		_onStart.setCallback(callback);
 		return this;

@@ -118,6 +118,16 @@ class TweenManager extends Destroyable
 	}
 	
 	// -----------------------------------------------------------------------------------------------
+	public function tintTo(target:DisplayObject, time:Int, color:Int, amount:Float = 1, useFrames:Bool = false):Tween {
+		return addTween(time, useFrames).tintTo(target, color, amount);
+	}
+	
+	// -----------------------------------------------------------------------------------------------
+	public function tintFrom(target:DisplayObject, time:Int, color:Int, amount:Float = 1, useFrames:Bool = false):Tween {
+		return addTween(time, useFrames).tintFrom(target, color, amount);
+	}
+	
+	// -----------------------------------------------------------------------------------------------
 	private function updateTweens():Void
 	{
 		if ( this.isExpired ) { return; }
