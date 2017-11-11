@@ -117,6 +117,13 @@ class Queue extends Destroyable
 	}
 	
 	// -----------------------------------------------------------------------------------------------
+	public function clear():Void
+	{
+		Funcs.destroy(_actions);
+		_actions.splice(0, _actions.length);
+	}
+	
+	// -----------------------------------------------------------------------------------------------
 	override public function destroy():Void 
 	{
 		if ( isExpired ) { return; }
