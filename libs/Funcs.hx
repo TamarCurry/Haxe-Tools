@@ -74,4 +74,12 @@ class Funcs
 	{
 		target.transform.colorTransform	= new ColorTransform();
 	}
+	
+	// -----------------------------------------------------------------------------------------------
+	public static function removeFromDisplay(target:DisplayObject):Void
+	{
+		if ( target != null && target.parent != null ) {
+			target.parent.removeChild(target);
+		}
+	}
 }

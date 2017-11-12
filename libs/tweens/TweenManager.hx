@@ -128,6 +128,17 @@ class TweenManager extends Destroyable
 	}
 	
 	// -----------------------------------------------------------------------------------------------
+	public function isTweening(target:Dynamic):Bool
+	{
+		for ( t in _tweens ) {
+			if ( t.isTweening(target) ) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	// -----------------------------------------------------------------------------------------------
 	private function updateTweens():Void
 	{
 		if ( this.isExpired ) { return; }
@@ -141,6 +152,14 @@ class TweenManager extends Destroyable
 			if ( t != null ) {
 				t.update(ms);
 			}
+		}
+	}
+	
+	// -------------------------------------------------------------------------
+	public function killTweensOf(target:Dynamic, completeTween:Bool=false, executeCompletionCallback:Bool = false):Void
+	{
+		for ( t in _tweens ) {
+			t.killTweensOf(target, completeTween, executeCompletionCallback);
 		}
 	}
 	

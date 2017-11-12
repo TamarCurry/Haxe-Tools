@@ -408,6 +408,17 @@ class Tween extends PoolableObject
 	}
 	
 	// -------------------------------------------------------------------------
+	public function isTweening(target:Dynamic):Bool
+	{
+		for ( t in _tweenData ) {
+			if ( t.isTarget(target) ) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	// -------------------------------------------------------------------------
 	public function update(ms:Int):Void {
 		if ( _lastUpdate == Globals.time || finished ) {
 			return;
@@ -464,16 +475,23 @@ class Tween extends PoolableObject
 	}
 	
 	// -------------------------------------------------------------------------
-	public function killTweensOf(target:Dynamic):Void {
+	public function killTweensOf(target:Dynamic, completeTween:Bool=false, executeCompletionCallback:Bool = false):Void {
 		var t:ITweenData;
 		var i:Int = _tweenData.length - 1;
 		while ( i > 0 ) {
 			t = _tweenData[i];
 			if ( t.isTarget(target) ) {
+				if ( completeTween ) {
+					_tweenData[i].update(1);
+				}
 				_tweenData.splice(i, 1);
 				t.destroy();
 			}
 			--i;
+		}
+		
+		if ( _tweenData.length == 0 && executeCompletionCallback ) {
+			end(false, true);
 		}
 	}
 	
