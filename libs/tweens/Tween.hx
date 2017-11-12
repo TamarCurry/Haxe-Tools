@@ -478,7 +478,7 @@ class Tween extends PoolableObject
 	public function killTweensOf(target:Dynamic, completeTween:Bool=false, executeCompletionCallback:Bool = false):Void {
 		var t:ITweenData;
 		var i:Int = _tweenData.length - 1;
-		while ( i > 0 ) {
+		while ( i >= 0 ) {
 			t = _tweenData[i];
 			if ( t.isTarget(target) ) {
 				if ( completeTween ) {
@@ -490,8 +490,8 @@ class Tween extends PoolableObject
 			--i;
 		}
 		
-		if ( _tweenData.length == 0 && executeCompletionCallback ) {
-			end(false, true);
+		if ( _tweenData.length == 0 ) {
+			end(false, executeCompletionCallback);
 		}
 	}
 	
