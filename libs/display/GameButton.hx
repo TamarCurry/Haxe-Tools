@@ -3,6 +3,7 @@ import openfl.display.Shape;
 import openfl.display.Sprite;
 import openfl.events.MouseEvent;
 import openfl.text.TextField;
+import openfl.text.TextFieldAutoSize;
 
 /**
  * ...
@@ -42,6 +43,7 @@ class GameButton extends GameSprite
 		tf.selectable = false;
 		tf.mouseEnabled = false;
 		tf.mouseWheelEnabled = false;
+		tf.multiline = true;
 		
 		_btnWidth = 0;
 		_btnHeight = 0;
@@ -96,6 +98,10 @@ class GameButton extends GameSprite
 	
 	public function setButton(text:String, ?buttonWidth:Int, ?buttonHeight:Int, ?buttonColor:Int, isHtml:Bool=false):Void
 	{
+		tf.text = "";
+		tf.autoSize = TextFieldAutoSize.NONE;
+		tf.width = 1;
+		tf.height = 1;
 		if ( isHtml ) {
 			tf.htmlText = text;
 		}
@@ -103,8 +109,7 @@ class GameButton extends GameSprite
 			tf.text = text;
 		}
 		
-		tf.width = tf.textWidth + 4;
-		tf.height = tf.textHeight + 2;
+		tf.autoSize = TextFieldAutoSize.LEFT;
 		
 		tf.x = -tf.width / 2;
 		tf.y = -tf.height / 2;
