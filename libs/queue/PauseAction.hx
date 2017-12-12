@@ -19,9 +19,14 @@ class PauseAction extends QueuedAction
 	}
 	
 	// -----------------------------------------------------------------------------------------------
-	override function onDeactivate():Void 
+	override function onActivate():Void 
 	{
 		_elapsed = 0;
+	}
+	
+	// -----------------------------------------------------------------------------------------------
+	override function onDeactivate():Void 
+	{
 		_duration = 0;
 		_useFrames = false;
 		super.onDeactivate();
