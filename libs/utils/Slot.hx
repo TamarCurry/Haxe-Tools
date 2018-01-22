@@ -12,7 +12,8 @@ class Slot extends Destroyable
 	public static inline var EAST	:Int = 4;
 	public static inline var WEST	:Int = 8;
 	
-	private var _size		:Float;
+	private var _width		:Float;
+	private var _height		:Float;
 	private var _neighbors	:Map<Int, Slot>;
 	
 	public var x(default, null):Float;
@@ -20,14 +21,15 @@ class Slot extends Destroyable
 	public var col(default, null):Int;
 	public var row(default, null):Int;
 	
-	public function new(col:Int, row:Int, size:Float) 
+	public function new(col:Int, row:Int, width:Float, height:Float) 
 	{
 		super();
 		this.col = col;
 		this.row = row;
-		_size = size;
-		x = col * size;
-		y = row * size;
+		_width = width;
+		_height = height;
+		x = col * width;
+		y = row * height;
 		
 		_neighbors = new Map<Int, Slot>();
 	}
