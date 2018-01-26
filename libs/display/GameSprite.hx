@@ -31,11 +31,9 @@ class GameSprite extends Sprite implements IDestroyable
 			this.parent.removeChild(this);
 		}
 		
-		var len:Int = this.numChildren;
-		for ( i in 0...len ) {
-			Funcs.destroy( this.getChildAt(i) );
+		while ( this.numChildren > 0 ) {
+			Funcs.destroy( this.removeChildAt(0) );
 		}
-		this.removeChildren();
 	}
 	
 }
