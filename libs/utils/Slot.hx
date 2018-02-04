@@ -50,4 +50,9 @@ class Slot extends Destroyable
 			_neighbors.set( dir, slot );
 		}
 	}
+	
+	public function getNeighbor(dir:Int):Slot
+	{
+		return _neighbors.get(dir);
+	}
 }
