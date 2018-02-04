@@ -22,6 +22,12 @@ class Destroyable implements IDestroyable
 	{
 		if ( isExpired ) { return; }
 		isExpired = true;
+		cleanupVars();
 	}
 	
+	// -----------------------------------------------------------------------------------------------
+	private function cleanupVars():Void
+	{
+		
+	}
 }
