@@ -23,10 +23,18 @@ class GameSprite extends Sprite implements IDestroyable
 	}
 	
 	// -----------------------------------------------------------------------------------------------
+	private function cleanupVars():Void
+	{
+		
+	}
+	
+	// -----------------------------------------------------------------------------------------------
 	public function destroy():Void 
 	{
 		if ( isExpired ) { return; }
 		isExpired = true;
+		cleanupVars();
+		
 		if ( this.parent != null ) {
 			this.parent.removeChild(this);
 		}
