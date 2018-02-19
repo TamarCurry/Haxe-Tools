@@ -2,6 +2,7 @@ package libs;
 
 import libs.queue.Queue;
 import libs.tweens.TweenManager;
+import openfl.display.Sprite;
 import openfl.events.EventDispatcher;
 import openfl.events.Event;
 import openfl.display.Stage;
@@ -27,6 +28,29 @@ class Globals
 	
 	// -----------------------------------------------------------------------------------------------
 	// -----------------------------------------------------------------------------------------------
+	public static function autoInit(target:Sprite):Void
+	{
+		if ( target == null ) { return; }
+		
+		if ( target.stage != null ) {
+			init(target.stage);
+		}
+		else {
+			target.addEventListener( Event.ADDED_TO_STAGE, onAddedToStage );
+		}
+	}
+	
+	// -----------------------------------------------------------------------------------------------
+	private static function onAddedToStage(e:Event):Void
+	{
+		if ( Std.is( e.target, Sprite ) ) {
+			var target:Sprite = cast e.target;
+			target.removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+			init(target.stage);
+		}
+	}
+	
+	// -----------------------------------------------------------------------------------------------
 	public static function init(s:Stage):Void
 	{
 		if ( stage != null ) { return; }
@@ -39,6 +63,7 @@ class Globals
 		gameHeight = stage.stageHeight;
 		stage.addEventListener(Event.ENTER_FRAME, onUpdate);
 		updateTime();
+		dispatcher.dispatchEvent( new Event(GlobalEvent.GLOBALS_INITIALIZED) );
 	}
 	
 	// -----------------------------------------------------------------------------------------------
