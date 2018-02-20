@@ -82,4 +82,12 @@ class Funcs
 			target.parent.removeChild(target);
 		}
 	}
+	
+	// -----------------------------------------------------------------------------------------------
+	public static function sortChildToTop(target:DisplayObject):Void
+	{
+		if ( target.parent != null ) {
+			target.parent.setChildIndex(target, target.parent.numChildren - 1);
+		}
+	}
 }
